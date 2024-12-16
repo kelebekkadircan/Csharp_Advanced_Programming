@@ -1,9 +1,10 @@
 ﻿using C__Advanced_Programming;
+using System.Dynamic;
 using static C__Advanced_Programming.Implicit_Explicit_Operators_Overloading;
 using static C__Advanced_Programming.OperatorOverloading;
 
 
-
+Console.WriteLine("MAIN SAYFASINA HOŞGELDİN DOSTUM");
 //class Program
 //{
 //    static void Main(string[] args)
@@ -71,3 +72,47 @@ using static C__Advanced_Programming.OperatorOverloading;
 
 #endregion
 
+#region ExceptionHandling
+//ExceptionHandling exceptionHandling = new();
+//int exceptionValue = 0;
+//int exceptionValue2 = 1;
+//try
+//{
+//    int result = exceptionValue2 / exceptionValue;
+//}
+//catch(Exception ex)
+//{
+//    // burada exceptionHandling sınıfından türettiğimiz custom exceptionu yakalarız.
+// // throw ile fırlatılan sınıflar Exception sınıfından türemiş olması zaruridir. Exceptiondan türemeyen sınıflar fırlatılamaz.
+//    throw new ExceptionHandling("This is a custom exception");
+//}
+
+
+#endregion
+
+#region Dynamic_Object
+
+//Dynamic_Object dynamic_Object = new();
+
+
+// ctor tetiklenir ve dinamik olarak üretilir.
+//Activator.CreateInstance(typeof(Dynamic_Object));
+
+
+// burada ilgili intance içerisinde olmayan propertyleri kullanabiliyoruz.
+//dynamic instance = new Dynamic_Object();
+//instance.DynamicProperty1 = "Dynamic Property1";
+//instance.DynamicProperty2 = 12345;
+
+//// burada direkt kendisi üretiyor ve propertyleri kullanabiliyoruz.
+//dynamic instace2 = new ExpandoObject();
+//instace2.DynamicProperty3 = "Dynamic Property3";
+//instace2.DynamicProperty4 = 678;
+
+//Console.WriteLine($"{instace2.DynamicProperty3} - {instace2.DynamicProperty4}");
+
+#endregion
+
+#region Generics
+
+#endregion
