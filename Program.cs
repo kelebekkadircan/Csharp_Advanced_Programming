@@ -1,11 +1,14 @@
 ﻿using C__Advanced_Programming;
 using Microsoft.VisualBasic;
+using System.Collections;
 using System.ComponentModel;
 using System.Dynamic;
+using System.Reflection;
 using static C__Advanced_Programming.Covarience_Contravarience;
 using static C__Advanced_Programming.DelegateStructer;
 using static C__Advanced_Programming.Implicit_Explicit_Operators_Overloading;
 using static C__Advanced_Programming.OperatorOverloading;
+using static C__Advanced_Programming.SpecialInterfaces;
 
 
 Console.WriteLine("MAIN SAYFASINA HOŞGELDİN DOSTUM");
@@ -362,6 +365,304 @@ Console.WriteLine("MAIN SAYFASINA HOŞGELDİN DOSTUM");
 #endregion
 
 #region AccessModifiers
+//AccessModifiers accessModifiers = new();
+
+#endregion
+
+#region  SpecialInterfaces
+
+//SpecialInterfaces specialInterfaces = new();
+//// IComparer  => sıralama işlemlerinde kullanılır. özel sıralama işlemleri yapmak için kullanılır.
+//Persons person1 = new() { Name = "Ali", Age = 25 };
+//Persons person2 = new() { Name = "Veli", Age = 30 };    
+//Persons person3 = new() { Name = "Deli", Age = 20 };
+
+//Persons person5 = new();
+
+//List<Persons> persons = new()
+//{
+//    person1,
+//    person2,
+//    person3
+//};
+
+//persons.Sort(new AgeComperer());
+
+//foreach (var person in persons)
+//{
+//    Console.WriteLine($"Name : {person.Name} Age : {person.Age}");
+//}
+
+// IComparable => bir nesnenin başka bir nesne ile karşılaştırılmasını sağlar.
+
+//Console.WriteLine(person1.CompareTo(person2) == -1 ? "küçüktür" : "büyüktür");
+
+// IClonable => bir nesnenin kopyasını oluşturmak için kullanılır.
+//Persons person4 = (Persons)person1.Clone();
+
+// IEnumarable => bir nesnenin üzerinde foreach iterasyonu ile gezinmemizi sağlar.
+
+//foreach (var person in person5)
+//{
+
+//}
+
+// IDisposable => bellek yönetimi için kullanılan bir arayüzdür.
+// kaynakları serbest bırakıp imha sürecini başlatır.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#endregion
+
+#region SpecialIterationandYıeld
+// iterasyon tekrarlayan bir süreçtir
+// c# açısından foreach bir iterasyon işlemidir. for ve while döngüleri  iterasyonel mantıkta çalışmaz bir şart vardır ve bu şart sağlandığı sürece çalışır.
+// iterasyonel mantıkta çalışan bir döngü sürecinde bir sonraki adımda kaynağın sayısını değiştiremeeyiz o yüzden döngüden bir şey silmememiz lazım.
+// IEnumerable => bir nesnenin üzerinde iterasyon işlemi yapmamızı sağlar. getenumerator metodunu barındıran inferfacedir.
+// IEnumerator => iterasyondaki kuralları belirler.yani her adımda nasıl işlem yapacağımız belirlemek için kullanırız. 
+
+//Stock stocks = new();
+
+//// typesafe çalışmaya özen göster.
+//foreach (string material in stocks)
+//{
+//    Console.WriteLine(material);
+//    //stocks.Add("ARABA"); BURADA EXCEPTION ALIRIZ ÇÜNKÜ ITERASYONEL DAVRANIŞI BOZARIZ.
+
+//}
+
+
+
+
+//foreach (var setting in stocks.Settings())
+//{
+//    Console.WriteLine($"Key : {setting.key} Value : {setting.value}");
+//}
+
+
+//class Stock : IEnumerable<string>
+//{
+//    List<string> materials = new()
+//    {
+//        "kalem", "silgi", "defter", "kitap", "kalemtraş"
+//    };
+//    public void Add(string material)
+//    {
+//        materials.Add(material);
+//    }
+
+//    // buradaki geri denüş değeri IEnumerator olduğu için geri dönen değerleri object olarak alırız.
+//    // bu sınıfa iterasyonel davranış kazandırdık bu method ile.
+//    public IEnumerator<string> GetEnumerator()
+//    {
+//        //return materials.GetEnumerator();
+//        return new StockEnumerator(materials);
+//    }
+
+//    IEnumerator IEnumerable.GetEnumerator()
+//    {
+//        //return materials.GetEnumerator();
+//        return new StockEnumerator(materials);
+
+
+//    }
+
+//   public IEnumerable<(string key, string value)> Settings()
+//    {
+//        // bellek optimizasyonu sağlıyoruz. toplu tutulmuyor adım geldikçe belleğe alınıyor.
+//        // compiler yield görünce bunun iterasyon bloğu olduğunu anlar ve bu bloğu iterasyonel bir yapıya dönüştürür.
+//        yield return ("key1", "value1");
+//        yield return ("key2", "value2");
+//        // yield var ise return tekil olarak kullanılamaz
+//        //return; hata verir
+//        yield break; // bu satırı yazarsak geri kalanlar çalışmaz.
+//        yield return ("key3", "value3");
+//        // yield deferred execution yapısı ile çalışır. tetiklemeye bağlı çalışır.
+
+
+//        // bu kullanım ile de aynı işlemi yapabiliriz.
+//        foreach (var material in materials)
+//        {
+//            yield return ("key", material);
+//        }
+
+
+//    }
+//}
+
+//class StockEnumerator : IEnumerator<string>
+//{
+//     List<string>? _source;
+//    int _currentIndex = -1;
+//    public string Current => _source[_currentIndex];
+
+//    public StockEnumerator(List<string> source )
+//    {
+//        _source = source;
+//    }
+
+//    object IEnumerator.Current => _source[_currentIndex];
+
+//    public void Dispose()
+//    {
+//        _source = null;
+//    }
+
+//    public bool MoveNext()
+//    {
+//        return ++_currentIndex < _source?.Count;
+//    }
+
+//    public void Reset()
+//    {
+//         _currentIndex = -1;
+//    }
+
+
+
+
+//}
+
+
+//// Yield Keywordu
+
+
+
+
+#endregion
+
+#region Attributes
+// yazılım elemanlarına müdahele etmek için kullanılır.
+// metadataları temsil eden yapılardır.
+// Reflection => çalışma zamanında bir nesnenin metadatalarına erişmek için kullanılır.
+
+//MyClass myClass = new();
+
+//myClass.EskiMetot();
+//myClass.YeniMetot();
+
+
+////[MyCustomAttribute(Name = "Ali", Surname = "Veli", Age = 25)]
+//[MyCustom(Name = "Ali", Surname = "Veli", Age = 25)] // ATTRIBUTE YAZMADAN DA ÇALIŞIR
+//[MyCustom2(MyProperty = sabitdeger)] 
+////  [MyCustom2,MyCustom] şeklinde  de yazılabilir.
+//class MyClass
+//{
+//    [Obsolete("Bu metot artık kullanılmamalıdır. Yerine YeniMetot kullanılmalıdır.")]
+//    public void EskiMetot()
+//    {
+//        Console.WriteLine("Eski Metot");
+//    }
+
+//    const string sabitdeger = "sabitdeger";
+
+//    public void YeniMetot()
+//    {
+//        Console.WriteLine("Yeni Metot");
+//    }
+
+//    [MyCustom(Name = "kadircan", Surname = "kelebekcan", Age = 35)]
+//    public MyClass()
+//    {
+
+//    }
+
+//}
+
+//// eğer bir class attribute olacak ise attribute üzerinden türemelidir.
+//// attributeusage ile nereden erişilebileceğini söyler AttributeTargets.All
+//[AttributeUsage(AttributeTargets.Class | AttributeTargets.Constructor ) ]
+//class MyCustomAttribute : Attribute
+//{
+//    public string Name { get; set; }
+//    public string Surname { get; set; }
+//    public int Age { get; set; }
+
+//    public MyCustomAttribute()
+//    {
+
+//    }
+
+//    public MyCustomAttribute(string name, string surname, int age)
+//    {
+//        Name = name;
+//        Surname = surname;
+//        Age = age;
+//    }
+//}
+
+//class MyCustom2Attribute : Attribute
+//{
+//    public string MyProperty { get; set; }
+//}
+
+
+// assembly level attributes
+
+
+
+#endregion
+
+#region Reflection
+// Reflection => çalışma zamanında bir nesnenin metadatalarına erişmek için kullanılır.
+// Temelde 3 amacı vardır 
+// => 1 Tip bilgisi inceleme. runtime da tip hakkında dinamik kararlar almak ve ya tipin özelliğine dinamik olarka erişmek için kullanılır.
+// => 2 Yeni bir tip oluşturma ve yükleme. programın çalışma sürecinde ihtiyaç duyduğu türleri olluşturmak ve paket program yaklaşımı sergilemek için imkan kılmaktadır.
+// => 3 Memberlarla dinamik çalıştırma.
+//YAZILDIĞI PROJE İÇERİSİNDEKİ TÜM TİPLERİN İSİMLERİNİ YAZDIRMAK İÇİN KULLANILIR.
+//Assembly type = Assembly.GetExecutingAssembly();
+//Type[] types = type.GetTypes();
+
+//foreach (var t in types)
+//{
+//    Console.WriteLine(t.Name + " TYPE İSİMLERİ");
+//    //MemberInfo[] members = t.GetMembers();
+//    //foreach (var member in members)
+//    //{
+//    //    Console.WriteLine(member.Name + " MEMBER İSİMLERİ");
+//    //}
+//}
+
+//Assembly type = Assembly.Load("C#_Advanced_Programming");
+//Type[] types = type.GetTypes();
+
+//foreach (var t in types)
+//{
+//    Console.WriteLine(t.Name + " TYPE İSİMLERİ");
+//    //MemberInfo[] members = t.GetMembers();
+//    //foreach (var member in members)
+//    //{
+//    //    Console.WriteLine(member.Name + " MEMBER İSİMLERİ");
+//    //}
+//}
+
+
+
+//var types = typeof(SpecialInterfaces);
+//SpecialInterfaces specialInterfaces = new();
+//var  type =specialInterfaces.GetType();
+//Console.WriteLine(type);
+
+//Assembly assembly = Assembly.GetExecutingAssembly();
+//var type = assembly.GetType(nameof(SpecialInterfaces));
+
+// bu sayede metotları çağırıp invoke edebiliriz ya da property çağırıp içine değer set edebiliriz.
+//SpecialInterfaces specialInterfaces = new();
+//var type = specialInterfaces.GetType();
+//var methodInfo = type.GetMethod(nameof(SpecialInterfaces.Printxandy));
+//methodInfo.Invoke(specialInterfaces, null);
 
 
 #endregion
