@@ -2,11 +2,15 @@
 using Microsoft.VisualBasic;
 using System.Collections;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Dynamic;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Security;
 using static C__Advanced_Programming.Covarience_Contravarience;
 using static C__Advanced_Programming.DelegateStructer;
 using static C__Advanced_Programming.Implicit_Explicit_Operators_Overloading;
+using static C__Advanced_Programming.IObservable_IObserver_Interfaces;
 using static C__Advanced_Programming.OperatorOverloading;
 using static C__Advanced_Programming.SpecialInterfaces;
 
@@ -666,3 +670,164 @@ Console.WriteLine("MAIN SAYFASINA HOŞGELDİN DOSTUM");
 
 
 #endregion
+
+#region IObservable and IObserver => Reactive Extension 
+
+//IObservable and IObserver => bir nesnenin durumunu izleyen ve bu durum değiştiğinde bu değişiklikten haberdar olan nesnelerdir.
+
+
+//IObservable_IObserver_Interfaces observable_IObserver_Interfaces = new();
+
+
+//MyObservable myObservable = new();
+
+//// eğer using kullanmaz isek dispose olmaz ve tamamlanmaz
+//using var sub1 =  myObservable.Subscribe(new MyObserver("Kadircan"));
+//using var sub2 = myObservable.Subscribe(new MyObserver("Yelizcan"));
+//using var sub3 = myObservable.Subscribe(new MyObserver("Bülocan"));
+
+//myObservable.NotifyObservers(5);
+//myObservable.NotifyObservers(10);
+//myObservable.NotifyObservers(15);
+
+
+
+// ISubject => IObservable ve IObserver arasında bir köprü görevi görür. hem gözlemci hem de gözlenen olabilir.
+// ISubject examples 
+
+
+
+
+
+
+
+
+
+#endregion
+
+#region Random Number Generate
+
+//// Random  sınıfını kullanrak üretebiliriz.
+//Random random = new();
+
+//foreach (var item in Enumerable.Range(1, 10))
+//{
+//    Console.WriteLine(random.Next());
+//}
+
+//// seed parametresini ayarlarsak her seferinde aynı sayıyı üretir.
+//Random random2 = new(5);
+
+//Console.WriteLine("*************");
+
+//foreach (var item in Enumerable.Range(1, 10))
+//{
+//    Console.WriteLine(random2.Next());
+//}
+//Console.WriteLine("*************");
+
+//Random random3  = new(5);
+
+//foreach (var item in Enumerable.Range(1, 10))
+//{
+//    Console.WriteLine(random3.Next());
+//}
+
+#endregion
+
+#region  SecureString
+// memory güvenliğini sağlamak isterken kullanabiliriz. 
+// kritik bilgiler için kullanılır.
+
+//SecureString secureString = new();
+//secureString.AppendChar('a');
+//secureString.AppendChar('b');
+//secureString.AppendChar('c');
+
+//Console.WriteLine(secureString.Length);
+
+
+//string bankcardNo = "1234 4562 2523 9607";
+//SecureString secureString = new();
+//bankcardNo.ToList().ForEach(b => secureString.AppendChar(b));
+//bankcardNo.ToList().ForEach(b => Console.WriteLine($"{b}" + "****"));
+//secureString.MakeReadOnly();
+
+
+//// Erişme Yöntemi ptrtostringauto ile yapılabilir.
+
+//IntPtr secureStringPtr = Marshal.SecureStringToBSTR(secureString);
+//string value = Marshal.PtrToStringAuto(secureStringPtr);
+//Console.WriteLine(value);
+//Marshal.ZeroFreeBSTR(secureStringPtr);
+
+
+
+
+
+
+#endregion
+
+#region eventviewer
+
+
+
+#endregion
+
+#region extension method
+
+//// mevcut sınıflar ve arayüzlere yeni işlevsellikler eklemenin esnek bir yoludur.
+//MyClass myClass = new();
+
+//// burada extension metotu ile ekledik
+//myClass.MyExtensionMethod();
+//class MyClass
+//{
+
+//}
+
+//// static olması önemli
+//static class ExtensionMethods
+//{
+//    // this ardından hangi sınıfa ekleneceğini verirsek ekelenecektir
+//    public static void MyExtensionMethod(this MyClass myClass)
+//    {
+
+//    }
+
+
+//}
+
+#endregion
+
+#region debuggerdisplay attribute
+
+Person person = new() { Name = "Ali", Surname = "Veli", Age = 25 };
+
+// burada debug ekrranında üstüne gelince isim soyisim ve yaşı gösterecek.
+var p = person;
+
+Console.WriteLine();
+
+
+[DebuggerDisplay("Name = {Name} Surname = {Surname} Age = {Age}")]
+class Person
+    {
+    public string Name { get; set; }
+    public string Surname { get; set; }
+    public int Age { get; set; }
+}
+
+
+
+
+
+
+
+#endregion
+
+
+
+
+
+
